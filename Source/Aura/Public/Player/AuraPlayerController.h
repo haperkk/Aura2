@@ -11,6 +11,7 @@
  * 
  */
 
+class UAuraAbilitySystemComponent;
 class UAuraInputConfig;
 struct FInputActionValue;
 class UInputAction;
@@ -48,4 +49,9 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UAuraInputConfig> InputConfig;
+
+	UPROPERTY()
+	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
+
+	UAuraAbilitySystemComponent* GetASC();
 };
