@@ -24,7 +24,7 @@ public:
 	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
 
 	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn = true))
-	FGameplayEffectSpecHandle DmageEffectSpecHandle;
+	FGameplayEffectSpecHandle DamageEffectSpecHandle;
 	
 protected:
 	virtual void BeginPlay() override;
