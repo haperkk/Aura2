@@ -46,6 +46,8 @@ public:
 	FGameplayTag Damage_Lightning;
 	FGameplayTag Damage_Arcane;
 	FGameplayTag Damage_Physical;
+
+	FGameplayTag Abilities_Attack;
 	
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 	
