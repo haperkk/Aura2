@@ -42,7 +42,7 @@ void AAuraEnemy::PossessedBy(AController* NewController)
 	AuraAIController->GetBlackboardComponent()->InitializeBlackboard(*BehaviorTree->BlackboardAsset);
 	AuraAIController->RunBehaviorTree(BehaviorTree);
 	AuraAIController->GetBlackboardComponent()->SetValueAsBool("HitReacting", false);
-	AuraAIController->GetBlackboardComponent()->SetValueAsBool("RangedAttack", CharacterClass != ECharacterClass::Warrior);
+	AuraAIController->GetBlackboardComponent()->SetValueAsBool("RangedAttacker", CharacterClass != ECharacterClass::Warrior);
 	
 }
 
