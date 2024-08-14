@@ -22,7 +22,7 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocati
 	const FVector SocketLocation = ICombatInterface::Execute_GetCombatSocketLocation(
 		GetAvatarActorFromActorInfo(),
 		FAuraGameplayTags::Get().Montage_Attack_Weapon);
-	FRotator Rotation = (ProjectileTargetLocation - SocketLocation).Rotation();
+	FRotator Rotation = (ProjectileTargetLocation - SocketLocation).Rotation();	
 		
 	FTransform SpawnTransform;
 	SpawnTransform.SetLocation(SocketLocation);
@@ -34,7 +34,7 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocati
 		GetOwningActorFromActorInfo(),
 		Cast<APawn>(GetOwningActorFromActorInfo()),
 		ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
-
+	
 	const UAbilitySystemComponent* SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetAvatarActorFromActorInfo());
 	FGameplayEffectContextHandle EffectContextHandle = SourceASC->MakeEffectContext();
 	EffectContextHandle.SetAbility(this);
