@@ -31,6 +31,7 @@ struct FUIWidgetRow : public FTableRowBase
 	UTexture2D* Image = nullptr;
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerStatChangedSignature, int32, NewValue);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAttributeChangedSignature, float, NewValue);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMessageWidgetRowSignature, FUIWidgetRow, Row);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAibilityInfoSignature, const FAuraAbilityInfo&, Info);
@@ -67,7 +68,10 @@ public:
 	FAibilityInfoSignature AbilityInfoDelegate;
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|XP")
-	FOnAttributeChangedSignature OnXPPercentChangedDelegate;
+	FOnAttributeChangedSignature OnXPPercentChangedDelegate; /*XP is in AuraPlayerState, but we reuse the AttributeChangedSignature to broadcast it, it doesn't mean that XP is an Attribute(In this Game)*/
+
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Level")
+	FOnPlayerStatChangedSignature OnPlayerLevelChangedDelegate;
 
 protected:
 
