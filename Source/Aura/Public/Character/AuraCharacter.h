@@ -5,6 +5,9 @@
 #include "CoreMinimal.h"
 #include "Character/AuraCharacterBase.h"
 #include "Interaction/PlayerInterface.h"
+#include "NiagaraComponent.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "AuraCharacter.generated.h"
 
 /**
@@ -25,7 +28,7 @@ public:
 	virtual void AddToAttributePoints_Implementation(int32 InAttributePoints) override;
 	virtual void AddToSpellPoints_Implementation(int32 InSpellPoints) override;
 	virtual void AddToPlayerLevel_Implementation(int32 InPlayerLevel) override;
-	virtual void LevelUp_Implementation() override;
+	virtual void LevelUp_Implementation() override;	
 	virtual int32 GetXP_Implementation() const override;
 	virtual int32 GetAttributePointsReward_Implementation(int32 Level) const override;
 	virtual int32 GetSpellPointsReward_Implementation(int32 Level) const override;
@@ -35,6 +38,18 @@ public:
 	/* begin Combat Interface */
 	virtual int32 GetPlayerLevel_Implementation() const override;
 	/* end Combat Interface */
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UNiagaraComponent> LevelUpNiagaraComponent;
 private:
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCameraComponent> TopDownCameraComponent;
+	
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USpringArmComponent> CameraBoom;
+	
 	virtual void InitAbilityActorInfo() override;
+
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastLevelUpParticles();
 };
