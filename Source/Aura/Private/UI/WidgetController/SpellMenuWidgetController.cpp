@@ -6,6 +6,7 @@
 void USpellMenuWidgetController::BroadcastInitialValues()
 {
 	BroadcastAbilityInfo();
+	SpellPointsChanged.Broadcast(GetAuraPS()->GetSpellPoints());
 }
 
 void USpellMenuWidgetController::BindCallbacksToDependencies()
@@ -16,6 +17,12 @@ void USpellMenuWidgetController::BindCallbacksToDependencies()
 			FAuraAbilityInfo Info = AbilityInfo->FindAbilityInfoForTag(AbilityTag);
 			Info.StatusTag = StatusTag;
 			AbilityInfoDelegate.Broadcast(Info);
+		}
+	);
+	GetAuraPS()->OnSpellPointsChangedDelegate.AddLambda(
+		[this](int32 NewValue)
+		{
+			SpellPointsChanged.Broadcast(NewValue);
 		}
 	);
 }
