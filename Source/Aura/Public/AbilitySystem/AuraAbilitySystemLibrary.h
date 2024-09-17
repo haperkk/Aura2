@@ -76,6 +76,21 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|GameEffects")
 	static void SetIsCriticalHit(UPARAM(ref) FGameplayEffectContextHandle& ContextHandle, bool bInIsCriticalHit);
 
+	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|GameEffects")
+	static void SetIsSuccessfulDebuff(UPARAM(ref) FGameplayEffectContextHandle& ContextHandle, bool bIsSuccessfulDebuff);
+
+	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|GameEffects")
+	static void SetDebuffDamage(UPARAM(ref) FGameplayEffectContextHandle& ContextHandle, float DebuffDamage);
+
+	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|GameEffects")
+	static void SetDebuffDuration(UPARAM(ref) FGameplayEffectContextHandle& ContextHandle, float DebuffDuration);
+
+	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|GameEffects")
+	static void SetDebuffFrequency(UPARAM(ref) FGameplayEffectContextHandle& ContextHandle, float DebuffFrequency);
+	
+	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|GameEffects")
+	static void SetDamageType(UPARAM(ref) FGameplayEffectContextHandle& ContextHandle, const FGameplayTag& InDamageType);
+
 	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|GamePlayMechanics")
 	static void GetLivePlayerWithRadius(const UObject* WorldContextObject, TArray<AActor*>& OutOverlappingActors, const TArray<AActor*> ActorsToIgnore, float Radius, const FVector& SphereOrigin);
 

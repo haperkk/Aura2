@@ -209,8 +209,49 @@ void UAuraAbilitySystemLibrary::SetIsCriticalHit(FGameplayEffectContextHandle& C
 	}
 }
 
+void UAuraAbilitySystemLibrary::SetIsSuccessfulDebuff(FGameplayEffectContextHandle& ContextHandle, bool bIsSuccessfulDebuff)
+{
+	if (FAuraGameplayEffectContext* EffectContext = static_cast<FAuraGameplayEffectContext*>(ContextHandle.Get()))
+	{
+		EffectContext->SetIsSuccessfulDebuff(bIsSuccessfulDebuff);
+	}
+}
+
+void UAuraAbilitySystemLibrary::SetDebuffDamage(FGameplayEffectContextHandle& ContextHandle, float DebuffDamage)
+{
+	if (FAuraGameplayEffectContext* EffectContext = static_cast<FAuraGameplayEffectContext*>(ContextHandle.Get()))
+	{
+		EffectContext->SetDebuffDamage(DebuffDamage);
+	}
+}
+
+void UAuraAbilitySystemLibrary::SetDebuffDuration(FGameplayEffectContextHandle& ContextHandle, float DebuffDuration)
+{
+	if (FAuraGameplayEffectContext* EffectContext = static_cast<FAuraGameplayEffectContext*>(ContextHandle.Get()))
+	{
+		EffectContext->SetDebuffDuration(DebuffDuration);
+	}
+}
+
+void UAuraAbilitySystemLibrary::SetDebuffFrequency(FGameplayEffectContextHandle& ContextHandle, float DebuffFrequency)
+{
+	if (FAuraGameplayEffectContext* EffectContext = static_cast<FAuraGameplayEffectContext*>(ContextHandle.Get()))
+	{
+		EffectContext->SetDebuffFrequency(DebuffFrequency);
+	}
+}
+
+void UAuraAbilitySystemLibrary::SetDamageType(FGameplayEffectContextHandle& ContextHandle, const FGameplayTag& InDamageType)
+{
+	if (FAuraGameplayEffectContext* EffectContext = static_cast<FAuraGameplayEffectContext*>(ContextHandle.Get()))
+	{
+		TSharedPtr<FGameplayTag> DamageType = MakeShared<FGameplayTag>(InDamageType);
+		EffectContext->SetDamageType(DamageType);
+	}
+}
+
 void UAuraAbilitySystemLibrary::GetLivePlayerWithRadius(const UObject* WorldContextObject,
-	TArray<AActor*>& OutOverlappingActors,const TArray<AActor*> ActorsToIgnore, float Radius, const FVector& SphereOrigin)
+                                                        TArray<AActor*>& OutOverlappingActors,const TArray<AActor*> ActorsToIgnore, float Radius, const FVector& SphereOrigin)
 {
 	FCollisionQueryParams SphereParams;
 	SphereParams.AddIgnoredActors(ActorsToIgnore);
