@@ -29,19 +29,6 @@ void UDebuffNiagaraComponent::BeginPlay()
 			}
 		);
 	}
-	if (CombatInterface)
-	{
-		FOnDeath OnDeathDelegate = CombatInterface->GetOnDeathDelegate();
-		OnDeathDelegate.AddDynamic(this, &UDebuffNiagaraComponent::OnOwnerDeath);
-		if (CombatInterface->GetOnDeathDelegate().IsBound())
-		{
-			UE_LOG(LogTemp, Warning, TEXT("OnDeath delegate is bound."));
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("OnDeath delegate is not bound."));
-		}
-	}
 }
 
 void UDebuffNiagaraComponent::DebuffTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
