@@ -125,14 +125,14 @@ int32 AAuraEnemy::GetPlayerLevel_Implementation() const
 	return Level;
 }
 
-void AAuraEnemy::Die()
+void AAuraEnemy::Die(const FVector& DeathImpulse)
 {
+	Super::Die(DeathImpulse);
 	SetLifeSpan(LifeSpan);
 	if (AuraAIController)
 	{
 		AuraAIController->GetBlackboardComponent()->SetValueAsBool("Dead", true);
 	}
-	Super::Die();
 }
 
 void AAuraEnemy::SetCombatTarget_Implementation(AActor* InCombatTarget)
