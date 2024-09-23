@@ -286,6 +286,37 @@ void UAuraAbilitySystemLibrary::GetLivePlayerWithRadius(const UObject* WorldCont
 	}
 }
 
+void UAuraAbilitySystemLibrary::GetClosestTargets(int32 MaxTargets, const TArray<AActor*> Actors, TArray<AActor*> OutClosestTargets,  const FVector& Origin)
+{
+	if (Actors.Num() <= MaxTargets)
+	{
+		OutClosestTargets = Actors;
+		return;
+	}
+
+	TArray<AActor*> ActorsToCheck = Actors;
+	int32 NumTargetsFound = 0;
+
+	while (NumTargetsFound < MaxTargets)
+	{
+		if (Actors.Num() == 0) break;
+		double ClosestDistance = TNumericLimits<double>::Max();
+		AActor* ClosestActor = nullptr;
+		for (AActor* PotentialTarget : ActorsToCheck)
+		{
+			const double Distance = (PotentialTarget->GetActorLocation() - Origin).Length();
+			if (Distance < ClosestDistance)
+			{
+				ClosestDistance = Distance;
+				ClosestActor = PotentialTarget;
+			}
+		}
+		ActorsToCheck.Remove(ClosestActor);
+		OutClosestTargets.AddUnique(ClosestActor);
+		++NumTargetsFound;
+	}
+}
+
 bool UAuraAbilitySystemLibrary::IsNotFriend(AActor* FirstActor, AActor* SecondActor)
 {
 	const bool bBothArePlayers = FirstActor->ActorHasTag("Player") && SecondActor->ActorHasTag("Player");
