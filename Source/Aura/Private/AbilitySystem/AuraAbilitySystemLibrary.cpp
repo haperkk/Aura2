@@ -286,7 +286,7 @@ void UAuraAbilitySystemLibrary::GetLivePlayerWithRadius(const UObject* WorldCont
 	}
 }
 
-void UAuraAbilitySystemLibrary::GetClosestTargets(int32 MaxTargets, const TArray<AActor*> Actors, TArray<AActor*> OutClosestTargets,  const FVector& Origin)
+void UAuraAbilitySystemLibrary::GetClosestTargets(int32 MaxTargets, const TArray<AActor*> Actors, TArray<AActor*>& OutClosestTargets,  const FVector& Origin)
 {
 	if (Actors.Num() <= MaxTargets)
 	{
