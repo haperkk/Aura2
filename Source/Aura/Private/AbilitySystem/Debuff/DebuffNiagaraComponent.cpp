@@ -22,7 +22,7 @@ void UDebuffNiagaraComponent::BeginPlay()
 	}
 	else if (CombatInterface)
 	{
-		CombatInterface->GetOnAscRegisteredDelegate().AddLambda(
+		CombatInterface->GetOnAscRegisteredDelegate().AddWeakLambda(this,
 			[this](UAbilitySystemComponent* InASC)
 			{
 				InASC->RegisterGameplayTagEvent(DebuffTag, EGameplayTagEventType::NewOrRemoved).AddUObject(this, &UDebuffNiagaraComponent::DebuffTagChanged);
@@ -43,9 +43,4 @@ void UDebuffNiagaraComponent::DebuffTagChanged(const FGameplayTag CallbackTag, i
 	{
 		Deactivate();
 	}
-}
-
-void UDebuffNiagaraComponent::OnOwnerDeath(AActor* DeadActor)
-{
-	Deactivate();
 }
