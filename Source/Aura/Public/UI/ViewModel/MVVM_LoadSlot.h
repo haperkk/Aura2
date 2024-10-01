@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "MVVMViewModelBase.h"
+#include "Game/LoadScreenSaveGame.h"
 #include "MVVM_LoadSlot.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSetWidgetSwicherIndex, int32, WidgetSwitcherIndex);
@@ -30,8 +31,11 @@ public:
 	FString LoadSlotName;
 
 	UPROPERTY()
-	int32 LoadIndex;
+	int32 SlotIndex;
 
+	UPROPERTY()
+	TEnumAsByte<ESaveSlotStatus> SlotStatus;
+	
 	/* Field Notifies */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, FieldNotify, Setter, Getter)
 	FString PlayerName;
