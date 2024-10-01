@@ -23,4 +23,13 @@ public:
 
 
 	void InitializeSlot();
+
+	UPROPERTY()
+	FString PlayerName;
+	
+	UPROPERTY()
+	FString LoadSlotName;
+
+	UPROPERTY()
+	int32 LoadIndex;
 };
