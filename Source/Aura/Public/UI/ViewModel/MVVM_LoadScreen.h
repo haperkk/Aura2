@@ -6,6 +6,8 @@
 #include "MVVMViewModelBase.h"
 #include "MVVM_LoadScreen.generated.h"
 
+
+
 class UMVVM_LoadSlot;
 /**
  * 
