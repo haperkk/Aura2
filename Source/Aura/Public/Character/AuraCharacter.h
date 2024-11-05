@@ -35,6 +35,7 @@ public:
 	virtual int32 GetAttributePoints_Implementation() const override;
 	virtual int32 GetSpellPoints_Implementation() const override;
 	virtual int32 FindLevelForXP_Implementation(int32 InXP) const override;
+	virtual void SaveProgress_Implementation(const FName& CheckpointTag) override;
 	/* end Player Interface */
 
 	/* begin Combat Interface */
