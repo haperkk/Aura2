@@ -54,7 +54,7 @@ protected:
  virtual void StunTagChanged(const FGameplayTag CallbackTag, int32 NewCount) override;
 	
 private:
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Aura|Character", Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UCameraComponent> TopDownCameraComponent;
 	
 	UPROPERTY(VisibleAnywhere)
