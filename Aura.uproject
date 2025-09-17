@@ -16,7 +16,8 @@
 				"EnhancedInput",
 				"AIModule",
 				"Niagara",
-				"ModelViewViewModel"
+				"ModelViewViewModel",
+				"ModularGameplay"
 			]
 		}
 	],
@@ -38,6 +39,22 @@
 		},
 		{
 			"Name": "ModelViewViewModel",
+			"Enabled": true
+		},
+		{
+			"Name": "ModularGameplay",
+			"Enabled": true
+		},
+		{
+			"Name": "GameFeatures",
+			"Enabled": true
+		},
+		{
+			"Name": "AbilitySystemGameFeatureActions",
+			"Enabled": true
+		},
+		{
+			"Name": "MyTestFeature",
 			"Enabled": true
 		}
 	]

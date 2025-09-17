@@ -59,6 +59,9 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USpringArmComponent> CameraBoom;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Lyra|Character", Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UAuraraPawnExtensionComponent> PawnExtComponent;
 	
 	virtual void InitAbilityActorInfo() override;
 

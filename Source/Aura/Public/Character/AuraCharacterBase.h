@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "AbilitySystem/Data/CharacterClassInfo.h"
 #include "AbilitySystemInterface.h"
+#include "ModularCharacter.h"
 #include "AbilitySystem/Debuff/DebuffNiagaraComponent.h"
 #include "AbilitySystem/Passive/PassiveNiagaraComponent.h"
 #include "Interaction/CombatInterface.h"
@@ -17,7 +18,7 @@ class UGameplayEffect;
 class UAttributeSet;
 
 UCLASS(Abstract)
-class AURA_API AAuraCharacterBase : public ACharacter, public IAbilitySystemInterface,  public ICombatInterface
+class AURA_API AAuraCharacterBase : public AModularCharacter, public IAbilitySystemInterface,  public ICombatInterface
 {
 	GENERATED_BODY()
 
