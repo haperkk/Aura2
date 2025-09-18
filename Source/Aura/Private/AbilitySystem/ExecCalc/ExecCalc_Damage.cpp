@@ -5,7 +5,7 @@
 
 #include "AbilitySystemComponent.h"
 #include "AuraAbilityTypes.h"
-#include "AuraGamelplayTags.h"
+#include "OldAuraGamelplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/CharacterClassInfo.h"
@@ -67,7 +67,7 @@ void UExecCalc_Damage::DetermineDebuff(	const FGameplayEffectCustomExecutionPara
 										FAggregatorEvaluateParameters EvaluationParameters,
 										TMap<FGameplayTag, FGameplayEffectAttributeCaptureDefinition>& InTagsToDefs) const
 {
-	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
+	const FOldAuraGameplayTags& GameplayTags = FOldAuraGameplayTags::Get();
 	for (TTuple<FGameplayTag, FGameplayTag> Pair : GameplayTags.DamageTypesToDebuffs)
 	{
 		const FGameplayTag& DamageType = Pair.Key;
@@ -106,7 +106,7 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
                                               FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
 	TMap<FGameplayTag, FGameplayEffectAttributeCaptureDefinition> TagsToCaptureDefs;
-	const FAuraGameplayTags& Tags = FAuraGameplayTags::Get();
+	const FOldAuraGameplayTags& Tags = FOldAuraGameplayTags::Get();
 	TagsToCaptureDefs.Add(Tags.Attributes_Secondary_Armor, DamageStatics().ArmorDef);
 	TagsToCaptureDefs.Add(Tags.Attributes_Secondary_BlockChance, DamageStatics().BlockChanceDef);
 	TagsToCaptureDefs.Add(Tags.Attributes_Secondary_ArmorPenetration, DamageStatics().ArmorPenetrationDef);
@@ -148,7 +148,7 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 
 	// Get Damage Set by Caller Magnitude
 	float Damage = 0.f;
-	for(const TTuple<FGameplayTag, FGameplayTag>& Pair : FAuraGameplayTags::Get().DamageTypesToResistances)
+	for(const TTuple<FGameplayTag, FGameplayTag>& Pair : FOldAuraGameplayTags::Get().DamageTypesToResistances)
 	{
 		const FGameplayTag DamageTypeTag = Pair.Key;
 		const FGameplayTag ResistanceTag = Pair.Value;

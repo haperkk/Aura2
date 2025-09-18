@@ -1,12 +1,12 @@
 // Copyright Haperkk
 
 
-#include "AuraGamelplayTags.h"
+#include "OldAuraGamelplayTags.h"
 #include "GameplayTagsManager.h"
 
-FAuraGameplayTags FAuraGameplayTags::GameplayTags;
+FOldAuraGameplayTags FOldAuraGameplayTags::GameplayTags;
 
-void FAuraGameplayTags::InitializeNativeGameplayTags()
+void FOldAuraGameplayTags::InitializeNativeGameplayTags()
 {
 	// Primary Attributes
 	GameplayTags.Attributes_Primary_Strength = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Attributes.Primary.Strength"), FString("Increases physical damage"));

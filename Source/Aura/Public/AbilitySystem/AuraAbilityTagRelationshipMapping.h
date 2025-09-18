@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
-#include "UAuraAbilityTagRelationshipMapping.generated.h"
+#include "AuraAbilityTagRelationshipMapping.generated.h"
 
 /** Struct that defines the relationship between different ability tags */
 USTRUCT()
@@ -38,7 +38,7 @@ struct FLyraAbilityTagRelationship
  * 
  */
 UCLASS()
-class AURA_API UUAuraAbilityTagRelationshipMapping : public UDataAsset
+class AURA_API UAuraAbilityTagRelationshipMapping : public UDataAsset
 {
 	GENERATED_BODY()
 

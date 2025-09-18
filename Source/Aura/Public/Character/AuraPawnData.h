@@ -6,12 +6,16 @@
 #include "Engine/DataAsset.h"
 #include "AuraPawnData.generated.h"
 
-class UAuraAbilitySet;
+class UAuraInputConfig;
 class UAuraAbilityTagRelationshipMapping;
+class UAuraAbilitySet;
+
 /**
- * 
+ * ULyraPawnData
+ *
+ *	Non-mutable data asset that contains properties used to define a pawn.
  */
-UCLASS()
+UCLASS(BlueprintType, Const, Meta = (DisplayName = "Lyra Pawn Data", ShortTooltip = "Data asset used to define a Pawn."))
 class AURA_API UAuraPawnData : public UPrimaryDataAsset
 {
 	GENERATED_BODY()

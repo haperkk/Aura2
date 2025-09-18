@@ -6,7 +6,7 @@
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "AuraAbilityTypes.h"
-#include "AuraGamelplayTags.h"
+#include "OldAuraGamelplayTags.h"
 #include "AbilitySystem/Abilities/AuraGameplayAbility.h"
 #include "AbilitySystem/Data/CharacterClassInfo.h"
 #include "Interaction/CombatInterface.h"
@@ -96,7 +96,7 @@ void UAuraAbilitySystemLibrary::InitializeDefaultAttributesFromSaveData(const UO
 	UCharacterClassInfo* CharacterClassInfo = GetCharacterClassInfo(WorldContextObject);
 	if (CharacterClassInfo == nullptr) return;
 
-	const FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
+	const FOldAuraGameplayTags GameplayTags = FOldAuraGameplayTags::Get();
 	const AActor* SourceAvatarActor = ASC->GetAvatarActor();
 
 	FGameplayEffectContextHandle EffectContextHandle = ASC->MakeEffectContext();
@@ -357,7 +357,7 @@ bool UAuraAbilitySystemLibrary::IsNotFriend(AActor* FirstActor, AActor* SecondAc
 
 FGameplayEffectContextHandle UAuraAbilitySystemLibrary::ApplyDamageEffect(const FDamageEffectParams& DamageEffectParams)
 {
-	const FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
+	const FOldAuraGameplayTags GameplayTags = FOldAuraGameplayTags::Get();
 	const AActor* SourceAvatarActor = DamageEffectParams.SourceAbilitySystemComponent->GetAvatarActor();
 
 	FGameplayEffectContextHandle EffectContextHandle = DamageEffectParams.SourceAbilitySystemComponent->MakeEffectContext();

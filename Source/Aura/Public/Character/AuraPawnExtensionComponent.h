@@ -5,16 +5,18 @@
 #include "CoreMinimal.h"
 #include "Components/GameFrameworkInitStateInterface.h"
 #include "Components/PawnComponent.h"
-#include "AuraraPawnExtensionComponent.generated.h"
+#include "AuraPawnExtensionComponent.generated.h"
 
+class UAuraAbilitySystemComponent;
+class UAuraPawnData;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class AURA_API UAuraraPawnExtensionComponent : public UPawnComponent, public IGameFrameworkInitStateInterface
+class AURA_API UAuraPawnExtensionComponent : public UPawnComponent, public IGameFrameworkInitStateInterface
 {
 	GENERATED_BODY()
 
 public:
-	UAuraraPawnExtensionComponent(const FObjectInitializer& ObjectInitializer);
+	UAuraPawnExtensionComponent(const FObjectInitializer& ObjectInitializer);
 
 	// the name of this feature
 	static const FName NAME_ActorFeatureName;
@@ -29,21 +31,21 @@ public:
 
 	/** Returns the pawn extension component if one exists on the specified actor. */
 	UFUNCTION(BlueprintPure, Category = "Lyra|Pawn")
-	static UAuraraPawnExtensionComponent* FindPawnExtensionComponent(const AActor* Actor) { return (Actor ? Actor->FindComponentByClass<UAuraraPawnExtensionComponent>() : nullptr); }
+	static UAuraPawnExtensionComponent* FindPawnExtensionComponent(const AActor* Actor) { return (Actor ? Actor->FindComponentByClass<UAuraPawnExtensionComponent>() : nullptr); }
 
 	/** Gets the pawn data, which is used to specify pawn properties in data */
 	template <class T>
 	const T* GetPawnData() const { return Cast<T>(PawnData); }
 
 	/** Sets the current pawn data */
-	void SetPawnData(const ULyraPawnData* InPawnData);
+	void SetPawnData(const UAuraPawnData* InPawnData);
 
 	/** Gets the current ability system component, which may be owned by a different actor */
 	UFUNCTION(BlueprintPure, Category = "Lyra|Pawn")
-	ULyraAbilitySystemComponent* GetLyraAbilitySystemComponent() const { return AbilitySystemComponent; }
+	UAuraAbilitySystemComponent* GetAuraAbilitySystemComponent() const { return AbilitySystemComponent; }
 
 	/** Should be called by the owning pawn to become the avatar of the ability system. */
-	void InitializeAbilitySystem(ULyraAbilitySystemComponent* InASC, AActor* InOwnerActor);
+	void InitializeAbilitySystem(UAuraAbilitySystemComponent* InASC, AActor* InOwnerActor);
 
 	/** Should be called by the owning pawn to remove itself as the avatar of the ability system. */
 	void UninitializeAbilitySystem();
@@ -64,10 +66,25 @@ public:
 	void OnAbilitySystemUninitialized_Register(FSimpleMulticastDelegate::FDelegate Delegate);
 
 protected:
-	// Called when the game starts
+	virtual void OnRegister() override;
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-public:
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	UFUNCTION()
+	void OnRep_PawnData();
+
+	/** Delegate fired when our pawn becomes the ability system's avatar actor */
+	FSimpleMulticastDelegate OnAbilitySystemInitialized;
+
+	/** Delegate fired when our pawn is removed as the ability system's avatar actor */
+	FSimpleMulticastDelegate OnAbilitySystemUninitialized;
+
+	/** Pawn data used to create the pawn. Specified from a spawn function or on a placed instance. */
+	UPROPERTY(EditInstanceOnly, ReplicatedUsing = OnRep_PawnData, Category = "Lyra|Pawn")
+	TObjectPtr<const UAuraPawnData> PawnData;
+
+	/** Pointer to the ability system component that is cached for convenience. */
+	UPROPERTY()
+	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
+
 };

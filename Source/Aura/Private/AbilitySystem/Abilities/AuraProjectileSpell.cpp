@@ -4,7 +4,7 @@
 #include "AbilitySystem/Abilities/AuraProjectileSpell.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
-#include "AuraGamelplayTags.h"
+#include "OldAuraGamelplayTags.h"
 #include "Actor/AuraProjectile.h"
 #include "Interaction/CombatInterface.h"
 

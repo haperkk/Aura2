@@ -7,6 +7,12 @@
 #include "Engine/DataAsset.h"
 #include "AuraAbilitySet.generated.h"
 
+class UAuraAbilitySystemComponent;
+struct FGameplayAbilitySpecHandle;
+struct FActiveGameplayEffectHandle;
+class UAttributeSet;
+class UGameplayEffect;
+class UAuraGameplayAbility;
 /**
  * FLyraAbilitySet_GameplayAbility
  *

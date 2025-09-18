@@ -3,7 +3,7 @@
 
 #include "UI/WidgetController/OverlayWidgetController.h"
 
-#include "AuraGamelplayTags.h"
+#include "OldAuraGamelplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AbilityInfo.h"
@@ -103,12 +103,12 @@ void UOverlayWidgetController::OnXPChanged(int32 NewXP)
 
 void UOverlayWidgetController::OnAbilityEquipped(const FGameplayTag& AbilityTag, const FGameplayTag& StatusTag, const FGameplayTag& Slot, const FGameplayTag& PreviousSlot) const
 {
-	const FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
+	const FOldAuraGameplayTags GameplayTags = FOldAuraGameplayTags::Get();
 	
 	FAuraAbilityInfo LastSlotInfo;
 	LastSlotInfo.StatusTag = GameplayTags.Abilities_Status_Unlocked;
 	LastSlotInfo.InputTag = PreviousSlot;
-	LastSlotInfo.AbilityTag = FAuraGameplayTags::Get().Abilities_None;
+	LastSlotInfo.AbilityTag = FOldAuraGameplayTags::Get().Abilities_None;
 
 	// Broadcast empty info if PreviousSlot is a valid slot, Only if equipping an already-quipped spell
 	AbilityInfoDelegate.Broadcast(LastSlotInfo);

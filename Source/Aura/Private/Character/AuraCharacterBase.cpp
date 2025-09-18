@@ -3,7 +3,7 @@
 
 #include "Character/AuraCharacterBase.h"
 
-#include "AuraGamelplayTags.h"
+#include "OldAuraGamelplayTags.h"
 #include "GameplayEffectTypes.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Aura/Aura.h"
@@ -19,11 +19,11 @@ AAuraCharacterBase::AAuraCharacterBase()
 
 	BurnDebuffComponent = CreateDefaultSubobject<UDebuffNiagaraComponent>("BurnDebuffComponent");
 	BurnDebuffComponent->SetupAttachment(GetRootComponent());
-	BurnDebuffComponent->DebuffTag = FAuraGameplayTags::Get().Debuff_Burn;
+	BurnDebuffComponent->DebuffTag = FOldAuraGameplayTags::Get().Debuff_Burn;
 
 	StunDebuffComponent = CreateDefaultSubobject<UDebuffNiagaraComponent>("StunDebuffComponent");
 	StunDebuffComponent->SetupAttachment(GetRootComponent());
-	StunDebuffComponent->DebuffTag = FAuraGameplayTags::Get().Debuff_Stun;
+	StunDebuffComponent->DebuffTag = FOldAuraGameplayTags::Get().Debuff_Stun;
 
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 	GetCapsuleComponent()->SetGenerateOverlapEvents(false);
@@ -181,7 +181,7 @@ void AAuraCharacterBase::InitAbilityActorInfo()
 
 FVector AAuraCharacterBase::GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag)
 {
-	const FAuraGameplayTags GameplayTag = FAuraGameplayTags::Get();
+	const FOldAuraGameplayTags GameplayTag = FOldAuraGameplayTags::Get();
 	if (MontageTag.MatchesTagExact(GameplayTag.CombatSocket_Weapon))
 	{
 		return Weapon->GetSocketLocation(WeaponTipSocketName);

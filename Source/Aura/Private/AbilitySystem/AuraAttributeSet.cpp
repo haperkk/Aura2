@@ -5,7 +5,7 @@
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AuraAbilityTypes.h"
 #include "GameplayEffectExtension.h"
-#include "AuraGamelplayTags.h"
+#include "OldAuraGamelplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "Character/AuraCharacter.h"
 #include "Interaction/CombatInterface.h"
@@ -15,7 +15,7 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
+	const FOldAuraGameplayTags& GameplayTags = FOldAuraGameplayTags::Get();
 	
 	//Primary Attributes
 	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Strength, GetStrengthAttribute);
@@ -134,7 +134,7 @@ void UAuraAttributeSet::HandleIncomingDamage(const FEffectProperties& Props)
 		else
 		{
 			FGameplayTagContainer TagContainer;
-			TagContainer.AddTag(FAuraGameplayTags::Get().Effects_HitReact);
+			TagContainer.AddTag(FOldAuraGameplayTags::Get().Effects_HitReact);
 			Props.TargetASC->TryActivateAbilitiesByTag(TagContainer);
 		}
 		const bool bIsBlockedHit = UAuraAbilitySystemLibrary::IsBlockedHit(Props.EffectContextHandle);
@@ -201,7 +201,7 @@ void UAuraAttributeSet::Debuff(const FEffectProperties& Props)
 	Effect->Period = DebuffFrequency;
 	Effect->DurationMagnitude = FScalableFloat(DebuffDuration);
 
-	Effect->InheritableOwnedTagsContainer.AddTag(FAuraGameplayTags::Get().DamageTypesToDebuffs[DamageType]);
+	Effect->InheritableOwnedTagsContainer.AddTag(FOldAuraGameplayTags::Get().DamageTypesToDebuffs[DamageType]);
 
 	Effect->StackingType = EGameplayEffectStackingType::AggregateBySource;
 	Effect->StackLimitCount = 1;
@@ -401,7 +401,7 @@ void UAuraAttributeSet::SendXPEvent(const FEffectProperties& Props) const
 		const ECharacterClass TargetClass = ICombatInterface::Execute_GetCharacterClass(Props.TargetCharacter);
 		const int32 XPReward = UAuraAbilitySystemLibrary::GetXPRewardForClassAndLevel(Props.TargetCharacter, TargetClass, TargetLevel);
 
-		const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
+		const FOldAuraGameplayTags& GameplayTags = FOldAuraGameplayTags::Get();
 		FGameplayEventData Payload;
 		Payload.EventTag = GameplayTags.Attributes_Meta_IncomingXP;
 		Payload.EventMagnitude = XPReward;
