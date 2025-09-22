@@ -6,8 +6,12 @@
 #include "Components/GameFrameworkComponent.h"
 #include "AuraHealthComponent.generated.h"
 
+struct FOnAttributeChangeData;
+struct FGameplayEffectSpec;
 class UAuraHealthSet;
 class UAuraAbilitySystemComponent;
+class UObject;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAuraHealth_DeathEvent, AActor*, OwningActor);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FAuraHealth_AttributeChanged, UAuraHealthComponent*, HealthComponent, float, OldValue, float, NewValue, AActor*, Instigator);
 
@@ -24,6 +28,11 @@ enum class ELyraDeathState : uint8
 	DeathFinished
 };
 
+/**
+ * ULyraHealthComponent
+ *
+ *	An actor component used to handle anything related to health.
+ */
 UCLASS(Blueprintable, meta=(BlueprintSpawnableComponent))
 class AURA_API UAuraHealthComponent : public UGameFrameworkComponent
 {

@@ -7,6 +7,8 @@
 #include "Engine/DataAsset.h"
 #include "AuraAbilityTagRelationshipMapping.generated.h"
 
+class UObject;
+
 /** Struct that defines the relationship between different ability tags */
 USTRUCT()
 struct FLyraAbilityTagRelationship

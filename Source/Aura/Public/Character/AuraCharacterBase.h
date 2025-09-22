@@ -23,7 +23,7 @@ class AURA_API AAuraCharacterBase : public AModularCharacter, public IAbilitySys
 	GENERATED_BODY()
 
 public:
-	AAuraCharacterBase();
+	AAuraCharacterBase(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void  GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;

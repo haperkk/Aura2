@@ -6,6 +6,7 @@
 #include "AttributeSet.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemComponent.h"
+#include "AuraAbilitySystemComponent.h"
 #include "AuraAttributeSet.generated.h"
 
 #define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
@@ -53,13 +54,32 @@ struct FEffectProperties
 template<class T>
 using TStaticFuncPtr = typename TBaseStaticDelegateInstance<T, FDefaultDelegateUserPolicy>::FFuncPtr;
 
+
+//new code from lyra
+// Delegate used to broadcast attribute events.
+DECLARE_MULTICAST_DELEGATE_FourParams(FAuraAttributeEvent, AActor* /*EffectInstigator*/, AActor* /*EffectCauser*/, const FGameplayEffectSpec& /*EffectSpec*/, float /*EffectMagnitude*/);
+
+
+/*
+ * Base attribute set class for the project.
+ */
 UCLASS()
 class AURA_API UAuraAttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
-
+	
 public:
+
 	UAuraAttributeSet();
+
+	UWorld* GetWorld() const override;
+
+	UAuraAbilitySystemComponent* GetAuraAbilitySystemComponent() const;
+
+
+
+	
+//old
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;

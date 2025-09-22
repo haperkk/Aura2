@@ -14,7 +14,7 @@
 #include "Character/AuraHealthComponent.h"
 #include "Character/AuraPawnExtensionComponent.h"
 #include "Components/CapsuleComponent.h"
-#include "Game/AuraGameModeBase.h"
+#include "Game/AuraGameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerController.h"
 #include "Player/AuraPlayerState.h"
@@ -23,7 +23,7 @@
 static FName NAME_AuraCharacterCollisionProfile_Capsule(TEXT("AuraPawnCapsule"));
 static FName NAME_AuraCharacterCollisionProfile_Mesh(TEXT("AuraPawnMesh"));
 
-AAuraCharacter::AAuraCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<UAuraCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
+AAuraCharacter::AAuraCharacter(const FObjectInitializer& ObjectInitializer)
 {
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>("CameraBoom");
 	CameraBoom->SetupAttachment(GetRootComponent());

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemInterface.h"
+#include "Character/AuraPawnData.h"
 #include "GameFramework/PlayerState.h"
 #include "AuraPlayerState.generated.h"
 
@@ -22,6 +23,19 @@ class AURA_API AAuraPlayerState : public APlayerState, public IAbilitySystemInte
 {
 	GENERATED_BODY()
 
+public:
+	template <class T>
+	const T* GetPawnData() const { return Cast<T>(PawnData); }
+
+protected:
+
+	UPROPERTY(ReplicatedUsing = OnRep_PawnData)
+	TObjectPtr<const UAuraPawnData> PawnData;
+
+	UFUNCTION()
+	void OnRep_PawnData();
+	
+	//old
 public:
 	AAuraPlayerState();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;

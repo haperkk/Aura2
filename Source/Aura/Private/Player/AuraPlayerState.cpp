@@ -7,6 +7,10 @@
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "Net/UnrealNetwork.h"
 
+void AAuraPlayerState::OnRep_PawnData()
+{
+}
+
 AAuraPlayerState::AAuraPlayerState()
 {
 	NetUpdateFrequency = 100.f;

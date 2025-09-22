@@ -3,8 +3,17 @@
 
 #include "Input/AuraInputConfig.h"
 
+UAuraInputConfig::UAuraInputConfig(const FObjectInitializer& ObjectInitializer)
+{
+}
+
+const UInputAction* UAuraInputConfig::FindNativeInputActionForTag(const FGameplayTag& InputTag, bool bLogNotFound) const
+{
+	return nullptr;
+}
+
 const UInputAction* UAuraInputConfig::FindAbilityInputActionForTag(const FGameplayTag& InputTag,
-	bool bLogNotFound) const
+                                                                   bool bLogNotFound) const
 {
 	for (FAuraInputAction Action : AbilityInputActions)
 	{

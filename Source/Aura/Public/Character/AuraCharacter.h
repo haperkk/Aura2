@@ -9,6 +9,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "AuraCharacter.generated.h"
 
+class UAuraHealthComponent;
 class UAuraAbilitySystemComponent;
 class AAuraPlayerState;
 class AAuraPlayerController;

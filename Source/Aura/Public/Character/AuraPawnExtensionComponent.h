@@ -10,7 +10,7 @@
 class UAuraAbilitySystemComponent;
 class UAuraPawnData;
 
-UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+UCLASS()
 class AURA_API UAuraPawnExtensionComponent : public UPawnComponent, public IGameFrameworkInitStateInterface
 {
 	GENERATED_BODY()

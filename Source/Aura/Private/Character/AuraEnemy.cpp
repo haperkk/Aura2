@@ -15,7 +15,7 @@
 #include "BehaviorTree/BehaviorTree.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
-AAuraEnemy::AAuraEnemy()
+AAuraEnemy::AAuraEnemy(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get())
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 

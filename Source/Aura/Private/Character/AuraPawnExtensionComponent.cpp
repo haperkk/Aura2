@@ -8,6 +8,7 @@
 #include "Aura/AuraLogChannels.h"
 #include "Character/AuraPawnData.h"
 #include "Components/GameFrameworkComponentManager.h"
+#include "Net/UnrealNetwork.h"
 
 
 const FName UAuraPawnExtensionComponent::NAME_ActorFeatureName("PawnExtension");
@@ -23,6 +24,13 @@ UAuraPawnExtensionComponent::UAuraPawnExtensionComponent(const FObjectInitialize
 
 	PawnData = nullptr;
 	AbilitySystemComponent = nullptr;
+}
+
+void UAuraPawnExtensionComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(UAuraPawnExtensionComponent, PawnData);
 }
 
 bool UAuraPawnExtensionComponent::CanChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag CurrentState, FGameplayTag DesiredState) const
